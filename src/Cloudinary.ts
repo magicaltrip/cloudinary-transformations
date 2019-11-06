@@ -5,7 +5,7 @@ export interface Cloudinary {
   secure: boolean;
 
   url(publicId: string, options: Transformation.ImageOptions): string;
-  video_url(publicId: string, options: Transformation.ImageOptions): string;
+  video_url(publicId: string, options: Transformation.VideoOptions): string;
 }
 
 type CloudinaryOptions = {
