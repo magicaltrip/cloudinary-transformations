@@ -1,10 +1,13 @@
 {
   "name": "@magicaltrip/cloudinary-transformations",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Marcelo Alves",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
