@@ -43,14 +43,24 @@ test("crop transformation", () => {
   expect(actual).toEqual(expected);
 });
 
+test("fetch_format transformation", () => {
+  const actual = cloudinary.url("cat", {
+    fetch_format: "auto"
+  });
+  const expected = "https://res.cloudinary.com/demo/image/upload/f_auto/cat";
+
+  expect(actual).toEqual(expected);
+});
+
 test("all transformations", () => {
   const actual = cloudinary.url("cat", {
     width: 200,
     height: 300,
-    crop: "scale"
+    crop: "scale",
+    fetch_format: "auto"
   });
   const expected =
-    "https://res.cloudinary.com/demo/image/upload/w_200,h_300,c_scale/cat";
+    "https://res.cloudinary.com/demo/image/upload/w_200,h_300,c_scale,f_auto/cat";
 
   expect(actual).toEqual(expected);
 });

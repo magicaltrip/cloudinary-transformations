@@ -3,6 +3,7 @@ export namespace Transformation {
     width?: number;
     height?: number;
     crop?: "fill" | "scale";
+    fetch_format?: "auto";
   }
 
   export interface ImageOptions extends MediaOptions {}
@@ -33,6 +34,10 @@ function makeImageOptionList(
 
   if (options.crop) {
     xs.push(`c_${options.crop}`);
+  }
+
+  if (options.fetch_format) {
+    xs.push(`f_${options.fetch_format}`);
   }
 
   return xs;
