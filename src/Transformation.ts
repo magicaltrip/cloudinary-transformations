@@ -18,19 +18,12 @@ export namespace Transformation {
 const domain = "https://res.cloudinary.com";
 const imageNs = "image/upload";
 const videoNs = "video/upload";
+const version = "v1";
 
 function makeImageOptionList(
   options: Transformation.ImageOptions
 ): Array<string> {
   let xs = [];
-
-  if (options.width) {
-    xs.push(`w_${options.width}`);
-  }
-
-  if (options.height) {
-    xs.push(`h_${options.height}`);
-  }
 
   if (options.crop) {
     xs.push(`c_${options.crop}`);
@@ -38,6 +31,14 @@ function makeImageOptionList(
 
   if (options.fetch_format) {
     xs.push(`f_${options.fetch_format}`);
+  }
+
+  if (options.height) {
+    xs.push(`h_${options.height}`);
+  }
+
+  if (options.width) {
+    xs.push(`w_${options.width}`);
   }
 
   return xs;
@@ -63,13 +64,13 @@ export function url(
   const base = `${domain}/${cloudName}/${imageNs}`;
 
   if (!options) {
-    return `${base}/${publicId}`;
+    return `${base}/${version}/${publicId}`;
   }
 
   const xs = makeImageOptionList(options);
   const optionString = xs.join(",");
 
-  return `${base}/${optionString}/${publicId}`;
+  return `${base}/${optionString}/${version}/${publicId}`;
 }
 
 export function videoUrl(
@@ -80,12 +81,12 @@ export function videoUrl(
   const base = `${domain}/${cloudName}/${videoNs}`;
 
   if (!options) {
-    return `${base}/${publicId}`;
+    return `${base}/${version}/${publicId}`;
   }
 
   const imageOptions = makeImageOptionList(options);
   const videoOptions = makeVideoOptionList(options);
   const optionString = imageOptions.concat(videoOptions).join(",");
 
-  return `${base}/${optionString}/${publicId}`;
+  return `${base}/${optionString}/${version}/${publicId}`;
 }
